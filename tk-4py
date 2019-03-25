@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+try:
+    from tkinter import *    #  python 3.
+except:
+    from Tkinter import *    #  python 2.7    
+def main():
+
+        #Crear y configurar ventana principal
+        window = Tk() 
+        window.title("Entry")         
+        #window.geometry('500x150')  # Si queremos un tamaño determinado de ventana
+
+        #widgets
+        titulo = Label(window, text="Cálculo del índice de masa corporal") 
+        titulo.grid(row=0,column=0)
+        
+        #Primer número 
+        kg1 = Label(window, text="Peso")         
+        kg.grid(column=0, row=1)  
+        kg1 = Entry(window,width=10) # Introducir Primer número       
+        kg1.insert(0,0) # Colocar un cero como valor inicial en la primera posición
+        kg1.grid(column=1, row=1) 
+         
+        #Segundo número
+        cm2 = Label(window, text="Altura")         
+        cm2.grid(column=0, row=2)
+        cm2 = Entry(window,width=10) # Introducir Segundo número   
+        cm2.insert(0,0) # Colocar un cero como valor inicial en la primera posición     
+        cm2.grid(column=1, row=2) 
+         
+        #Resultado
+        label_resultado = Label(window, text='Resultado')
+        label_resultado.grid(column=0, row=3)
+        resultado = Label(window, text='')
+        resultado.grid(column=1, row=3)
+        
+        # FUNCION que realiza el cálculo,  es llamada por el BOTON 'calcular'  con     'command=media'
+        def media():
+            try:  # Comprobar que los números introducidos son válidos y no son letras
+                n1= float( numero_1.get() )
+                n2= float( numero_2.get() )
+                solucion = float(  n1   +  n2  ) / 2     
+                resultado.config(text = solucion) # Modificar el contenido del label 'resultado'
+            except:
+                resultado.config(text ='Debe introducir números válidos')
+            
+        #Botón que llama a la función 'media' definida arriba         
+        calcular = Button(window,text='Calcular',command=media)
+        calcular.grid(column=0, row=4)        
+
+        window.mainloop()  #Bucle principal de la ventana         
+if __name__ == "__main__":       # averiguar si se está ejecutando o importando
+        main(
